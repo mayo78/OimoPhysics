@@ -1,4 +1,5 @@
 package oimo.common;
+
 import oimo.common.Vec3;
 
 /**
@@ -8,12 +9,12 @@ class MathUtil {
 	/**
 	 * Positive infinity.
 	 */
-	public static inline var POSITIVE_INFINITY:Float = 1e65536;
+	public static var POSITIVE_INFINITY(get, never):Float;
 
 	/**
 	 * Negative infinity.
 	 */
-	public static inline var NEGATIVE_INFINITY:Float = -1e65536;
+	public static var NEGATIVE_INFINITY(get, never):Float;
 
 	/**
 	 * The ratio of the circumference of a circle to its diameter.
@@ -94,8 +95,10 @@ class MathUtil {
 	 * This never returns `NaN` as long as `x` is not `NaN`.
 	 */
 	public static inline function safeAsin(x:Float):Float {
-		if (x <= -1) return -HALF_PI;
-		if (x >= 1) return HALF_PI;
+		if (x <= -1)
+			return -HALF_PI;
+		if (x >= 1)
+			return HALF_PI;
 		return Math.asin(x);
 	}
 
@@ -104,8 +107,10 @@ class MathUtil {
 	 * This never returns `NaN` as long as `x` is not `NaN`.
 	 */
 	public static inline function safeAcos(x:Float):Float {
-		if (x <= -1) return PI;
-		if (x >= 1) return 0;
+		if (x <= -1)
+			return PI;
+		if (x >= 1)
+			return 0;
 		return Math.acos(x);
 	}
 
@@ -156,5 +161,13 @@ class MathUtil {
 	 */
 	public static inline function randVec3():Vec3 {
 		return randVec3In(-1, 1);
+	}
+
+	static inline function get_POSITIVE_INFINITY() {
+		return Math.POSITIVE_INFINITY;
+	}
+
+	static inline function get_NEGATIVE_INFINITY() {
+		return Math.NEGATIVE_INFINITY;
 	}
 }
